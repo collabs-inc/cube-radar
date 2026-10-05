@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar</title>
+<link rel="icon" href="/web/icon.svg">
+<link rel="stylesheet" href="/kit/ui.css">
+<link rel="stylesheet" href="/web/app.css">
+</head>
+<body>
+<div class="shell">
+  <section class="pane-side pane-left" id="persona"></section>
+
+  <main class="pane-main inbox">
+    <header class="toolbar">
+      <div class="segmented" id="views">
+        <button data-view="inbox" class="on">Inbox</button>
+        <button data-view="briefings">Briefing</button>
+      </div>
+      <div class="segmented sources" id="sources"></div>
+      <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search" autocomplete="off"></label>
+    </header>
+
+    <div class="split" id="inboxView">
+      <section class="list-pane">
+        <div class="list-head">
+          <div class="segmented small" id="statuses"></div>
+        </div>
+        <div class="list" id="list" tabindex="0"></div>
+      </section>
+      <article class="reader" id="reader"></article>
+    </div>
+
+    <div class="split briefings" id="briefingView" hidden>
+      <section class="list-pane"><div class="list" id="briefList"></div></section>
+      <article class="reader doc" id="briefDoc"></article>
+    </div>
+  </main>
+
+  <aside class="pane-side pane-right" id="side">
+    <div class="section">
+      <div class="section-title">Loops <span class="end" id="loopsState"></span></div>
+      <div id="loops"></div>
+    </div>
+    <div class="section">
+      <div class="section-title">Watching <button class="btn plain end" id="editWatch">Change</button></div>
+      <div id="watching"></div>
+    </div>
+    <div class="section foot" id="foot"></div>
+  </aside>
+</div>
+<div id="sheet"></div>
+<script type="module" src="/web/app.js"></script>
+</body>
+</html>

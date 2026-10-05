@@ -1,0 +1,12 @@
+{
+  "name": "cube-radar",
+  "private": true,
+  "type": "module",
+  "description": "Radar: a go-to-market inbox with Scout, an agent that runs your loops and drafts your replies. A Cube app.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node server/server.mjs",
+    "setup": "node server/setup-home.mjs",
+    "test": "node --test tools/lib.test.mjs server/*.test.mjs"
+  }
+}

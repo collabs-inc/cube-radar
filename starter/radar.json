@@ -1,0 +1,10 @@
+{
+  "topics": [],
+  "watch": { "names": [], "phrases": [], "all_of": [] },
+  "ignore_authors": [],
+  "reddit": { "subreddits": [] },
+  "hn": { "min_points": 0 },
+  "video": { "min_views": 250000, "min_views_per_follower": 20, "min_bookmark_rate": 5 },
+  "capabilities": [],
+  "voice": ""
+}
