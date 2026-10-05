@@ -93,7 +93,7 @@ $('q').oninput = e => { S.q = e.target.value; renderList(); };
 // ---- the list ----
 function itemRow(it) {
   const head = it.title ? `<b>${esc(it.title)}</b> ${esc(it.text || '')}` : esc(it.text || it.url || '');
-  return `<button class="item${S.selected === it.id ? ' on' : ''}${['replied', 'dismissed'].includes(it.status) ? ' done' : ''}" data-id="${esc(it.id)}">
+  return `<button class="item${S.selected === it.id ? ' on' : ''}${it.status === 'new' ? ' is-new' : ''}${['replied', 'dismissed'].includes(it.status) ? ' done' : ''}" data-id="${esc(it.id)}">
     ${it.status === 'new' ? '<span class="unread"></span>' : ''}${tile(it.source)}
     <div class="top"><span class="who">${esc(it.author || SOURCES[it.source]?.name || '')}</span><span class="when" title="${esc(full(it.posted_at || it.found_at))}">${ago(it.posted_at || it.found_at)}</span></div>
     <div class="body">${head}</div>
