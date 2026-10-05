@@ -16,7 +16,7 @@
   --mono: ui-monospace, "SF Mono", "Geist Mono", Menlo, monospace;
 
   --window: #ffffff;          /* the main panes */
-  --sidebar: #ececee;
+  --sidebar: #f3f3f5;
   --surface: #ffffff;         /* cards, the reading pane */
   --raised: #ffffff;          /* popovers, the composer */
   --canvas: #e5e5ea;          /* behind media */
