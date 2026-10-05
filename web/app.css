@@ -32,11 +32,12 @@
 .list { flex: 1; min-height: 0; overflow: auto; padding: 0 8px 16px; outline: none; }
 .group-h { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; gap: 6px; padding: 10px 8px 5px; background: var(--window); font: 600 11.5px/1.2 var(--font); color: var(--label-3); }
 .group-h.now { color: var(--orange); }
-.item { position: relative; display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 3px 10px; width: 100%; text-align: left; padding: 10px 10px 11px; border-radius: 10px; }
-.item + .item::before { content: ""; position: absolute; top: 0; left: 38px; right: 10px; height: .5px; background: var(--separator); }
+.item { position: relative; display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 3px 10px; width: 100%; text-align: left; padding: 10px 12px 11px 22px; border-radius: 10px; }
+/* hairlines between rows, from the text's left edge; a hovered or selected row hides the two that touch it */
+.item + .item::before { content: ""; position: absolute; top: 0; left: 50px; right: 12px; height: .5px; background: var(--separator); }
 .item:hover { background: var(--hover); }
 .item.on { background: var(--accent); color: #fff; }
-.item.on::before, .item.on + .item::before { display: none; }
+.item:hover::before, .item:hover + .item::before, .item.on::before, .item.on + .item::before { opacity: 0; }
 .item .tile { grid-row: 1 / span 2; margin-top: 1px; }
 .item .top { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
 .item .who { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
@@ -45,7 +46,7 @@
 .item .body b { color: var(--label); font-weight: 500; }
 .item .meta { grid-column: 2; display: flex; align-items: center; gap: 6px; margin-top: 3px; min-width: 0; }
 .item .meta .why { color: var(--label-3); font-size: 11.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
-.item .unread { position: absolute; left: -1px; top: 16px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.item .unread { position: absolute; left: 8px; top: 15px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 .item.on .when, .item.on .body, .item.on .body b, .item.on .meta .why { color: rgba(255, 255, 255, .85); }
 .item.on .unread { background: #fff; }
 .item.on .badge { background: rgba(255, 255, 255, .2); color: #fff; }
