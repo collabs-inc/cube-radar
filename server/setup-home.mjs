@@ -1,4 +1,4 @@
-// Creates the user's Radar folder the first time the app is installed: ~/Radar (or RADAR_HOME), a git repository
+// Creates the user's Scout folder the first time the app is installed: ~/Scout (or RADAR_HOME), a git repository
 // with the starter loops and an empty radar.json, so Scout has somewhere to write what to watch. An existing folder
 // is never changed, except for the managed block in its AGENTS.md that names where this app lives.
 import fs from 'node:fs';
@@ -7,20 +7,20 @@ import { execFileSync } from 'node:child_process';
 import { APP, STATE, home } from './paths.mjs';
 
 const HOME = home();
-const BEGIN = '<!-- cube-radar:begin -->', END = '<!-- cube-radar:end -->';
+const BEGIN = '<!-- cube-scout:begin -->', END = '<!-- cube-scout:end -->';
 const block = `${BEGIN}
-## The Radar app
+## Cube Scout
 
-This folder belongs to Radar, a Cube app. Its code lives at \`${APP}\`; never edit it there, because an update
+This folder belongs to Cube Scout, a Cube app. Its code lives at \`${APP}\`; never edit it there, because an update
 replaces that folder.
 
 - \`radar.json\`: what to watch. The format is in \`${APP}/tools/README.md\`.
 - \`loops/\`: one runbook per loop, with its schedule in the front matter. A loop run follows \`${APP}/scout/LOOP.md\`.
 - \`briefings/\`: one Markdown file per day.
-- Radar's API, for adding to and reading the inbox: \`$RADAR_URL\` (see \`${APP}/scout/SCOUT.md\`).
+- Cube Scout's API, for adding to and reading the inbox: \`$RADAR_URL\` (see \`${APP}/scout/SCOUT.md\`).
 ${END}`;
 
-const AGENTS = `# Radar
+const AGENTS = `# Scout
 
 Go-to-market: the conversations worth being in, found by loops and triaged by Scout. Add anything about your
 product, your audience or how you like to reply here; Scout reads this file first.
@@ -42,9 +42,9 @@ if (!fs.existsSync(HOME)) {
   git('init', '-q', '-b', 'main');
   git('add', '-A');
   let who = [];
-  try { git('config', 'user.email'); } catch { who = ['-c', 'user.name=Radar', '-c', 'user.email=radar@cube.invalid']; }
-  execFileSync('git', ['-C', HOME, ...who, 'commit', '-q', '-m', 'Start Radar'], { stdio: 'ignore' });
-  console.log(`radar: created ${HOME}`);
+  try { git('config', 'user.email'); } catch { who = ['-c', 'user.name=Cube Scout', '-c', 'user.email=radar@cube.invalid']; }
+  execFileSync('git', ['-C', HOME, ...who, 'commit', '-q', '-m', 'Start Cube Scout'], { stdio: 'ignore' });
+  console.log(`scout: created ${HOME}`);
 } else {
   const f = path.join(HOME, 'AGENTS.md');
   let text = '';
@@ -52,7 +52,7 @@ if (!fs.existsSync(HOME)) {
   const i = text.indexOf(BEGIN), j = text.indexOf(END);
   if (i >= 0 && j > i) {
     const next = text.slice(0, i) + block + text.slice(j + END.length);
-    if (next !== text) { fs.writeFileSync(f, next); console.log(`radar: updated the app's paths in ${f}`); }
+    if (next !== text) { fs.writeFileSync(f, next); console.log(`scout: updated the app's paths in ${f}`); }
   }
-  console.log(`radar: ${HOME} already exists; left as it is`);
+  console.log(`scout: ${HOME} already exists; left as it is`);
 }

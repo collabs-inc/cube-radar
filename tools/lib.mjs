@@ -1,9 +1,9 @@
-// Shared helpers for the cube-radar source fetchers. No dependencies: Node >= 20, built-in fetch.
+// Shared helpers for the cube-scout source fetchers. No dependencies: Node >= 20, built-in fetch.
 import { readFile, writeFile } from "node:fs/promises";
 import { homedir } from "node:os";
 import { join } from "node:path";
 
-export const USER_AGENT = "cube-radar/0.1";
+export const USER_AGENT = "cube-scout/0.1";
 export const TEXT_LIMIT = 2000;
 
 /** A failure that must stop the run: the caller must not advance its last-run time. */

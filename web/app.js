@@ -1,4 +1,4 @@
-// Radar's page: Scout on the left (kit/persona.js), the inbox in the middle, the loops on the right.
+// Cube Scout's page: Scout on the left (kit/persona.js), the inbox in the middle, the loops on the right.
 // Everything comes from the server's API and refreshes on its event stream (/api/events).
 import { mountPersona, applyTheme, md } from '/kit/persona.js';
 applyTheme();
@@ -238,7 +238,7 @@ function renderLoops() {
         ${l.runs.length ? l.runs.map(r => `<button class="run" data-log="${esc(r.id)}" data-name="${esc(l.name)}"><i class="${r.stopped ? 'stopped' : r.ok ? '' : 'bad'}"></i><span class="t">${esc(ago(r.ended))}</span><span class="s">${esc(r.summary)}</span></button>`).join('') : '<div class="empty">No runs yet.</div>'}
         </div>` : ''}
     </div>`;
-  }).join('') : '<div class="empty">No loops in your Radar folder.</div>');
+  }).join('') : '<div class="empty">No loops in your Scout folder.</div>');
 }
 $('loops').onclick = async e => {
   const t = e.target.closest('[data-toggle]');
@@ -260,7 +260,7 @@ async function showRun(id, name) {
 $('sheet').onclick = e => { if (e.target.matches('.sheet-back, [data-close]')) $('sheet').innerHTML = ''; };
 addEventListener('keydown', e => { if (e.key === 'Escape' && $('sheet').innerHTML) $('sheet').innerHTML = ''; }, true);
 
-// ---- what Radar watches ----
+// ---- what Cube Scout watches ----
 function renderWatching() {
   const c = S.config, w = c.watch || {};
   const topics = c.topics || [];
@@ -274,7 +274,7 @@ function renderWatching() {
 }
 $('editWatch').onclick = () => (S.config.topics || []).length ? scout.prefill('Change what you watch: ') : scout.say('Hi Scout. Help me set up what to watch.');
 function renderFoot() {
-  $('foot').innerHTML = S.radar.home ? `Your Radar folder: <code>${esc(S.radar.home.replace(/^\/(home|Users)\/[^/]+|^\/workspace\/home/, '~'))}</code><br>Loops, what to watch and briefings live there.` : '';
+  $('foot').innerHTML = S.radar.home ? `Your Scout folder: <code>${esc(S.radar.home.replace(/^\/(home|Users)\/[^/]+|^\/workspace\/home/, '~'))}</code><br>Loops, what to watch and briefings live there.` : '';
 }
 
 // ---- briefings ----

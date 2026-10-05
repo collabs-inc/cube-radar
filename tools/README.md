@@ -10,7 +10,7 @@ node --test tools/lib.test.mjs
 ```
 
 - `--since` is an ISO time (an offset-less time is UTC) or a window: `30m`, `24h`, `7d`, `2w`.
-- `--config` defaults to `$RADAR_HOME/radar.json`, else `~/Radar/radar.json`.
+- `--config` defaults to `$RADAR_HOME/radar.json`, else `~/Scout/radar.json`.
 - `--out` writes the JSON array to a file; otherwise it goes to stdout. A one-line summary goes to stderr.
 - Every request has a 60 s timeout and is retried with backoff on network errors, timeouts, 429 and 5xx. If a source still fails, the fetcher exits non-zero and writes nothing, so a caller never advances its last-run time past posts it never saw.
 

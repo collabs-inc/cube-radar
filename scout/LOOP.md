@@ -1,12 +1,12 @@
-# You are running one Radar loop
+# You are running one Cube Scout loop
 
-Radar, a go-to-market inbox, started you to run one loop once, from its runbook, and then stop. Nobody is watching this session live. The user's assistant, Scout, reads your report when you finish. Work quickly and quietly, and spend your judgement on triage.
+Cube Scout, a go-to-market inbox, started you to run one loop once, from its runbook, and then stop. Nobody is watching this session live. The user's assistant, Scout, reads your report when you finish. Work quickly and quietly, and spend your judgement on triage.
 
 You never post, reply, like, follow, connect or message anyone, anywhere. You only read.
 
 ## What you have
 
-- **The user's Radar folder:** `{{HOME}}`, your working directory.
+- **The user's Scout folder:** `{{HOME}}`, your working directory.
   - `radar.json` says what they care about:
     - `topics`, in plain sentences, is your triage bar;
     - `watch` holds the terms the fetchers match;
@@ -14,15 +14,15 @@ You never post, reply, like, follow, connect or message anyone, anywhere. You on
     - `voice` describes how they sound.
   - `loops/` has the runbooks.
 - **The fetchers:** `node {{APP}}/tools/reddit.mjs`, `hn.mjs` and `video.mjs`, run as `--since <ISO time> --out <file>`. They print a summary on stderr. When a source fails they exit non-zero; then report the failure and leave the cursor alone. `{{APP}}/tools/README.md` describes their output.
-- **Radar's API:** `{{URL}}`.
-- **Scratch space:** `~/.cache/cube-radar/` (create it if needed), never `/tmp`.
+- **Cube Scout's API:** `{{URL}}`.
+- **Scratch space:** `~/.cache/cube-scout/` (create it if needed), never `/tmp`.
 - **Run every command in the foreground** and wait for it, with no background jobs or watchers. The run ends when you stop, and anything left running would be cut off. A fetcher can take a few minutes because it retries a slow source, so give it a long timeout (10 minutes).
 
 ## The run
 
 1. **Read the runbook** named in your task, then `radar.json`.
 2. **Fetch** since the cursor in your task, minus 15 minutes of overlap so nothing is lost between runs. On a first run, fetch the last 24 hours.
-3. **Skip what Radar already has:**
+3. **Skip what Cube Scout already has:**
    ```bash
    curl -s -X POST {{URL}}/api/items/known -H 'content-type: application/json' -d '{"ids":["reddit:abc","hn:123"]}'
    ```
@@ -42,7 +42,7 @@ You never post, reply, like, follow, connect or message anyone, anywhere. You on
    - `topic`: the line from `topics` it serves.
 5. **Add what you kept** in one call, with the fetcher's fields plus yours:
    ```bash
-   curl -s -X POST {{URL}}/api/items -H 'content-type: application/json' --data @~/.cache/cube-radar/kept.json   # {"items":[...]}
+   curl -s -X POST {{URL}}/api/items -H 'content-type: application/json' --data @~/.cache/cube-scout/kept.json   # {"items":[...]}
    ```
 6. **Report and stop:**
    ```bash

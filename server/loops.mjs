@@ -12,7 +12,7 @@
 //   What one run does, step by step.
 //
 // The schedule lives in the file, so changing it is editing a file (or asking Scout to). Whether a loop is on, and
-// what each run did, is Radar's state, in <state>/loops.json.
+// what each run did, is Cube Scout's state, in <state>/loops.json.
 import fs from 'node:fs';
 import path from 'node:path';
 

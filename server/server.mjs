@@ -1,8 +1,8 @@
-// Radar — watches the conversations you care about and brings back the ones worth your reply.
+// Cube Scout — watches the conversations you care about and brings back the ones worth your reply.
 //   node server/server.mjs           → http://127.0.0.1:$PORT (as a Cube app: behind Cube's gate)
 //
 // Three columns: Scout (the kit's persona) on the left, the inbox in the middle, the loops on the right. Loops are
-// runbooks in <home>/loops/ (loops.mjs) that Radar runs on their schedules, each as a one-off agent session Scout
+// runbooks in <home>/loops/ (loops.mjs) that Cube Scout runs on their schedules, each as a one-off agent session Scout
 // supervises: a loop adds posts to the inbox through this server's API, and when it ends Scout hears about it.
 //
 //   GET  /api/items                      the inbox
@@ -48,11 +48,11 @@ const scout = createPersona({
   models: { claude: process.env.RADAR_CLAUDE_MODEL, codex: process.env.RADAR_CODEX_MODEL },
   describe(c) {
     const it = c.item && store.get(c.item);
-    if (!it) return c.view ? `[Radar: the user is looking at ${c.view}.]` : '';
-    return `[Radar: the user is looking at inbox item ${it.id} (${it.source}${it.author ? `, by ${it.author}` : ''}${it.url ? `, ${it.url}` : ''}). ` +
+    if (!it) return c.view ? `[Cube Scout: the user is looking at ${c.view}.]` : '';
+    return `[Cube Scout: the user is looking at inbox item ${it.id} (${it.source}${it.author ? `, by ${it.author}` : ''}${it.url ? `, ${it.url}` : ''}). ` +
       `Read it with GET ${URL_SELF}/api/items/${encodeURIComponent(it.id)}.]`;
   },
-  eventPrompt: details => `[Radar: you supervise the loops. ${details.length > 1 ? 'These runs ended' : 'A run ended'}:\n` +
+  eventPrompt: details => `[Cube Scout: you supervise the loops. ${details.length > 1 ? 'These runs ended' : 'A run ended'}:\n` +
     details.map(d => `- ${d}`).join('\n') +
     `\nIf something new deserves a reply now, tell the user in a line or two which posts and why (name the item ids in backticks). ` +
     `If a run failed, say what needs doing, or fix the runbook and run it again. If nothing needs the user, say so in one line.]`,
@@ -282,6 +282,6 @@ setInterval(watchHome, 60000);   // folders created after start
 
 http.createServer((req, res) => {
   try { route(req, res); } catch (e) { console.error('radar:', e); if (!res.headersSent) send(res, 500, { error: String(e.message || e) }); else res.destroy(); }
-}).listen(PORT, '127.0.0.1', () => console.log(`Radar → ${URL_SELF}  (home ${home()})`));
+}).listen(PORT, '127.0.0.1', () => console.log(`Cube Scout → ${URL_SELF}  (home ${home()})`));
 process.on('uncaughtException', e => console.error('radar: uncaught', e));
 for (const sig of ['SIGTERM', 'SIGINT']) process.on(sig, () => { store.flush(); if (running) running.work.stop(); scout.shutdown(); process.exit(0); });

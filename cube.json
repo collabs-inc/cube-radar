@@ -1,5 +1,5 @@
 {
-  "name": "Radar",
+  "name": "Cube Scout",
   "description": "Go-to-market with Scout: the posts worth your reply across X, LinkedIn, Reddit, HN and video, with drafts.",
   "icon": "web/icon.svg",
   "install": "node server/setup-home.mjs",
